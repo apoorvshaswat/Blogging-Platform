@@ -10,7 +10,7 @@ This Blog App is a full-stack blogging platform developed using **React** for th
 - RESTful API for communication between the front-end and back-end.
 
 ## Technologies Used
-- **Frontend:** React, CSS
+- **Frontend:** React, Bootstrap,  CSS
 - **Backend:** Node.js, Express
 - **Database:** MongoDB
 
