@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Admin() {
   return (
@@ -28,9 +29,15 @@ export default function Admin() {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
+      <Link
+        to={{
+          pathname: "/",
+        }}
+      >
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </Link>
     </form>
   );
 }

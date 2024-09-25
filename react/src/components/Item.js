@@ -13,7 +13,7 @@ export default function Item(props) {
       <p>{item.overview}</p>
       <Link
         to={{
-          pathname: "/Blog_page",
+          pathname: "/BlogPage",
         }}
         state={{ item }}
       >
