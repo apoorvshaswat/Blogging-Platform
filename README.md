@@ -33,12 +33,12 @@ This Blog App is a full-stack blogging platform developed using **React** for th
 
 4. cd react
    npm install
+   npm run build
 
-5. cd express
+6. copy react build files into express 
+
+7. cd express
    nodemon app.js
-
-6. cd react
-   npm start
 
 
 
