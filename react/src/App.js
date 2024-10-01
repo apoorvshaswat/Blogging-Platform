@@ -14,19 +14,34 @@ const App = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/api/blogs`
-      );
-      const data = await response.json();
-      setBlogs(data);
-    };
+    // const fetchBlogs = async () => {
+    //   const response = await fetch(
+    //     `${process.env.REACT_APP_API_URL}/api/blogs`
+    //   );
+    //   const data = await response.json();
+    //   setBlogs(data);
+    // };
 
     // const fetchBlogs = async () => {
     //   const response = await fetch("http://localhost:5000/api/blogs");
     //   const data = await response.json();
     //   setBlogs(data);
     // };
+
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch(
+          "https://blogging-platform-1-rp5u.onrender.com/api/blogs"
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setBlogs(data);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }
+    };
 
     fetchBlogs();
   }, []);
