@@ -26,14 +26,6 @@ export default function CreateBlog({ onAddBlog }) {
       img_src: "/assets/cardimage/Group 1000002773.png",
     };
 
-    // const response = await fetch(`${process.env.REACT_APP_API_URL}/api/blogs`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(newBlogPost),
-    // });
-
     // const response = await fetch("http://localhost:5000/api/blogs", {
     //   method: "POST",
     //   headers: {

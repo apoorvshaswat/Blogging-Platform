@@ -10,9 +10,7 @@ export default function BlogPage() {
     <div>
       <div className="blog1_main">
         <div className="blog1_main_content">
-          <p>
-            <b style={{ fontSize: "40px" }}>{item.title}</b>
-          </p>
+          <b>{item.title}</b>
           <p>{item.overview}</p>
         </div>
       </div>

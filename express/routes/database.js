@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 // mongoose.connect("mongodb://127.0.0.1:27017/blog_db");
-
-mongoose.connect("mongodb+srv://shaswatapoorv:yX7k6t0fjoh8fhkl@cluster0.o8qhz.mongodb.net/blog_db?retryWrites=true&w=majority");
+mongoose.connect(MONGODB_URI);
 
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -11,6 +11,20 @@ const blogSchema = new mongoose.Schema({
   content: { type: String },
 });
 
-const Blog = mongoose.model("Blog", blogSchema);
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  dateCreated: { type: Date, default: Date.now },
+});
 
-module.exports = Blog;
+userSchema.plugin(passportLocalMongoose);
+
+const Blog = mongoose.model("Blog", blogSchema);
+const User = mongoose.model("User", userSchema);
+
+module.exports = {
+  Blog,
+  User,
+  serializeUser: User.serializeUser(),
+  deserializeUser: User.deserializeUser(),
+};

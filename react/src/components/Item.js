@@ -6,7 +6,7 @@ export default function Item(props) {
 
   return (
     <div className="blog1">
-      <img src={item.img_src} alt=""/>
+      <img src={item.img_src} alt="" />
       <p>
         <strong>{item.title}</strong>
       </p>

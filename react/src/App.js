@@ -8,39 +8,22 @@ import BlogPage from "./components/BlogPage";
 import ItemList from "./components/ItemList";
 import Admin from "./components/Admin";
 import CreateBlog from "./components/CreateBlog";
+import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import "./App.css";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    // const fetchBlogs = async () => {
-    //   const response = await fetch(
-    //     `${process.env.REACT_APP_API_URL}/api/blogs`
-    //   );
-    //   const data = await response.json();
-    //   setBlogs(data);
-    // };
-
-    // const fetchBlogs = async () => {
-    //   const response = await fetch("http://localhost:5000/api/blogs");
-    //   const data = await response.json();
-    //   setBlogs(data);
-    // };
-
     const fetchBlogs = async () => {
-      try {
-        const response = await fetch(
-          "https://blogging-platform-1-rp5u.onrender.com/api/blogs"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setBlogs(data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
+      // const response = await fetch("http://localhost:5000/api/blogs");
+      const response = await fetch(
+        "https://blogging-platform-1-rp5u.onrender.com/api/blogs"
+      );
+      const data = await response.json();
+      setBlogs(data);
     };
 
     fetchBlogs();
@@ -57,6 +40,7 @@ const App = () => {
           path="/"
           element={
             <>
+              <Navbar />
               <Main />
               <Achievements />
               <Why />
@@ -65,11 +49,50 @@ const App = () => {
             </>
           }
         />
-        <Route path="/BlogPage" element={<BlogPage />} />
-        <Route path="/Admin" element={<Admin />} />
+        <Route
+          path="/BlogPage"
+          element={
+            <>
+              <Navbar />
+              <BlogPage />
+            </>
+          }
+        />
+        <Route
+          path="/Admin"
+          element={
+            <>
+              <Navbar />
+              <Admin />
+            </>
+          }
+        />
         <Route
           path="/create-post"
-          element={<CreateBlog onAddBlog={addBlog} />}
+          element={
+            <>
+              <Navbar />
+              <CreateBlog onAddBlog={addBlog} />
+            </>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Navbar />
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <Navbar />
+              <Signup />
+            </>
+          }
         />
       </Routes>
     </BrowserRouter>
