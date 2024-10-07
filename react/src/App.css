@@ -2,6 +2,7 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
+  min-width: 354px;
 }
 
 * {
@@ -270,6 +271,7 @@ body {
 
 .blog_main {
   width: 100%;
+  min-width: 354px;
   height: auto;
   background: #003145;
   display: flex;
@@ -353,7 +355,6 @@ body {
 
 .blog1_main_panel_buttons button {
   width: 100px;
-
   gap: 5%;
 }
 
@@ -762,9 +763,18 @@ body {
   }
 
   .blog1 {
+    min-width: 354px;
     width: auto;
     height: 400px;
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .blog_main {
+    min-width: 400px;
+  }
+
+  body {
+    min-width: 400px;
   }
 }
