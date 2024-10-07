@@ -283,7 +283,7 @@ body {
 }
 
 .blog1 {
-  width: 354px;
+  width: 25%;
   height: 400px;
   background-color: white;
   margin-top: 50px;
@@ -764,7 +764,7 @@ body {
 
   .blog1 {
     min-width: 354px;
-    width: auto;
+    width: 25%;
     height: 400px;
     margin-left: 10px;
     margin-right: 10px;
