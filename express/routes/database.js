@@ -17,7 +17,6 @@ const blogSchema = new mongoose.Schema({
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
   dateCreated: { type: Date, default: Date.now },
 });
 
