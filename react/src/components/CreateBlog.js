@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateBlog({ onAddBlog }) {
@@ -7,8 +7,36 @@ export default function CreateBlog({ onAddBlog }) {
     overview: "",
     content: "",
   });
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // const checkLogin = async () => {
+    //   const response = await fetch("http://localhost:5000/api/checklogin", {
+    //     method: "GET",
+    //     credentials: "include",
+    //   });
+    //   setIsAuthenticated(response.ok);
+    //   if (!response.ok) {
+    //     navigate("/login");
+    //   }
+    // };
+
+    const checkLogin = async () => {
+      const response = await fetch(
+        "https://blogging-platform-1-rp5u.onrender.com/api/checklogin",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      setIsAuthenticated(response.ok);
+      if (!response.ok) {
+        navigate("/login");
+      }
+    };
+    checkLogin();
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,7 +48,6 @@ export default function CreateBlog({ onAddBlog }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newBlogPost = {
       ...formData,
       img_src: "/assets/cardimage/Group 1000002773.png",
@@ -32,6 +59,7 @@ export default function CreateBlog({ onAddBlog }) {
     //     "Content-Type": "application/json",
     //   },
     //   body: JSON.stringify(newBlogPost),
+    //   credentials: "include",
     // });
 
     const response = await fetch(
@@ -42,22 +70,28 @@ export default function CreateBlog({ onAddBlog }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newBlogPost),
+        credentials: "include",
       }
     );
 
-    const result = await response.json();
-    onAddBlog(result);
-    navigate("/");
+    if (response.ok) {
+      const result = await response.json();
+      onAddBlog(result);
+      navigate("/");
+    } else {
+      const error = await response.json();
+      console.error("Failed to create blog post:", error.message);
+    }
   };
 
   return (
     <div className="create-blog-bg">
       <div className="create-blog">
         <h2>Create a New Blog Post</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>
-              Title
+        {isAuthenticated ? (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Title</label>
               <input
                 type="text"
                 name="title"
@@ -65,32 +99,31 @@ export default function CreateBlog({ onAddBlog }) {
                 onChange={handleChange}
                 required
               />
-            </label>
-          </div>
-          <div>
-            <label>
-              Overview
-              <textarea
+            </div>
+            <div>
+              <label>Overview</label>
+              <input
+                type="text"
                 name="overview"
                 value={formData.overview}
                 onChange={handleChange}
                 required
               />
-            </label>
-          </div>
-          <div>
-            <label>
-              Content
+            </div>
+            <div>
+              <label>Content</label>
               <textarea
                 name="content"
                 value={formData.content}
                 onChange={handleChange}
                 required
               />
-            </label>
-          </div>
-          <button type="submit">Create Post</button>
-        </form>
+            </div>
+            <button type="submit">Create Blog Post</button>
+          </form>
+        ) : (
+          <p>You need to log in to create a blog post.</p>
+        )}
       </div>
     </div>
   );

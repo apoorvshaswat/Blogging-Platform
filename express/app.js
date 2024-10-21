@@ -17,20 +17,32 @@ app.use(express.static(path.join(__dirname, "build")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.use(cors({ origin: "*" }));
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
+
+app.use(
+  cors({
+    origin: "https://blogging-platform-1-rp5u.onrender.com",
+    credentials: true,
+  })
+);
+
 app.use(
   expressSession({
     resave: false,
     saveUninitialized: false,
-    secret: "1234",
+    secret: process.env.SESSION_SECRET || "your-secret",
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 app.use(flash());
 app.use(logger("dev"));
 app.use(express.json());
@@ -39,7 +51,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", blogRoutes);
-
 app.get("/:random", (req, res) => {
   res.render("unknownroute");
 });

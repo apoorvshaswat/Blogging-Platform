@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 const passportLocalMongoose = require("passport-local-mongoose");
 
-// mongoose.connect("mongodb://127.0.0.1:27017/blog_db");
+// mongoose.connect("mongodb://127.0.0.1:27017/blog_db", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
 mongoose.connect(process.env.MONGODB_URI);
 
 const blogSchema = new mongoose.Schema({
@@ -25,6 +29,4 @@ const User = mongoose.model("User", userSchema);
 module.exports = {
   Blog,
   User,
-  serializeUser: User.serializeUser(),
-  deserializeUser: User.deserializeUser(),
 };

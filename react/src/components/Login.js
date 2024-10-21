@@ -13,22 +13,24 @@ const Login = () => {
     setError("");
     setLoading(true);
 
-    // const response = await fetch("http://localhost:5000/checklogin", {
+    // const response = await fetch("http://localhost:5000/api/login", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
     //   },
     //   body: JSON.stringify({ username, password }),
+    //   credentials: "include",
     // });
 
     const response = await fetch(
-      "https://blogging-platform-1-rp5u.onrender.com/checklogin",
+      "https://blogging-platform-1-rp5u.onrender.com/api/login",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
+        credentials: "include",
       }
     );
 
