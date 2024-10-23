@@ -7,28 +7,42 @@ const BlogPage = ({ onDelete }) => {
   const navigate = useNavigate();
 
   const handleDelete = async () => {
-    // const response = await fetch(
-    //   `http://localhost:5000/api/blogs/${item._id}`,
-    //   {
-    //     method: "DELETE",
-    //     credentials: "include",
-    //   }
-    // );
+    // const check = await fetch("http://localhost:5000/api/checklogin", {
+    //   method: "GET",
+    //   credentials: "include",
+    // });
 
-    const response = await fetch(
-      `https://blogging-platform-1-rp5u.onrender.com/api/blogs/${item._id}`,
+    const check = await fetch(
+      "https://blogging-platform-1-rp5u.onrender.com/api/checklogin",
       {
-        method: "DELETE",
+        method: "GET",
         credentials: "include",
       }
     );
 
-    if (response.ok) {
-      onDelete(item._id);
-      navigate("/");
+    if (!check.ok) {
+      navigate("/login");
     } else {
-      const errorData = await response.json();
-      console.error("Error deleting blog post:", errorData.message);
+      // const response = await fetch(
+      //   `http://localhost:5000/api/blogs/${item._id}`,
+      //   {
+      //     method: "DELETE",
+      //     credentials: "include",
+      //   }
+      // );
+
+      const response = await fetch(
+        `https://blogging-platform-1-rp5u.onrender.com/api/blogs/${item._id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
+
+      if (response.ok) {
+        onDelete(item._id);
+        navigate("/homepage");
+      }
     }
   };
 

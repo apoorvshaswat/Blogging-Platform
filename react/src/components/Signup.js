@@ -11,6 +11,14 @@ const Signup = () => {
     e.preventDefault();
     setError("");
 
+    // const response = await fetch("http://localhost:5000/register", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ username, password }),
+    // });
+
     const response = await fetch(
       "https://blogging-platform-1-rp5u.onrender.com/register",
       {
@@ -18,18 +26,14 @@ const Signup = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
+        body: JSON.stringify({ username, password }),
       }
     );
 
     if (response.ok) {
       navigate("/login");
     } else {
-      const result = await response.json();
-      setError(result.message || "Registration failed");
+      setError("Username already exists");
     }
   };
 

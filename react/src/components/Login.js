@@ -5,13 +5,11 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
 
     // const response = await fetch("http://localhost:5000/api/login", {
     //   method: "POST",
@@ -34,14 +32,10 @@ const Login = () => {
       }
     );
 
-    setLoading(false);
-
     if (response.ok) {
-      localStorage.setItem("isAuthenticated", "true");
-      navigate("/create-post");
+      navigate("/homepage");
     } else {
-      const result = await response.json();
-      setError(result.message || "Invalid username or password");
+      setError("Invalid username or password");
     }
   };
 
@@ -81,8 +75,8 @@ const Login = () => {
               />
             </label>
           </div>
-          <button type="submit" disabled={loading} className="submit-button">
-            {loading ? "Logging in..." : "Login"}
+          <button type="submit" className="submit-button">
+            Login
           </button>
         </form>
       </div>

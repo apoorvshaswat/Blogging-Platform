@@ -13,49 +13,34 @@ import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import EditBlog from "./components/EditBlog";
+import NavbarHome from "./components/NavbarHome";
+import MainHome from "./components/MainHome";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchBlogs = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:5000/api/blogs", {
-  //         credentials: "include",
-  //       });
-  //       const data = await response.json();
-  //       setBlogs(data);
-  //     } catch (error) {
-  //       console.error("Error fetching blogs:", error);
-  //     }
-  //   };
-  //   fetchBlogs();
-  // }, []);
+  const fetchBlogs = async () => {
+    // const response = await fetch("http://localhost:5000/api/blogs");
+    const response = await fetch(
+      "//https://blogging-platform-1-rp5u.onrender.com/api/blogs"
+    );
+    const data = await response.json();
+    setBlogs(data);
+  };
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await fetch(
-          "https://blogging-platform-1-rp5u.onrender.com/api/blogs",
-          {
-            credentials: "include",
-          }
-        );
-        const data = await response.json();
-        setBlogs(data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
-    };
     fetchBlogs();
-  }, []);
+  }, [refresh]);
 
   const addBlog = (newBlog) => {
     setBlogs((prevList) => [...prevList, newBlog]);
+    setRefresh((prev) => !prev);
   };
 
   const handleDelete = (id) => {
     setBlogs(blogs.filter((blog) => blog._id !== id));
+    setRefresh((prev) => !prev);
   };
 
   const handleUpdate = (updatedBlog) => {
@@ -64,19 +49,29 @@ const App = () => {
         blog._id === updatedBlog._id ? updatedBlog : blog
       )
     );
+    setRefresh((prev) => !prev);
   };
 
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
         <Route
           path="/"
           element={
             <>
+              <Navbar />
               <Main />
               <Achievements />
               <Why />
+            </>
+          }
+        />
+        <Route
+          path="/homepage"
+          element={
+            <>
+              <NavbarHome />
+              <MainHome />
               <Explore />
               <ItemList itemList={blogs} />
             </>
@@ -84,14 +79,35 @@ const App = () => {
         />
         <Route
           path="/BlogPage"
-          element={<BlogPage onDelete={handleDelete} blogs={blogs} />}
+          element={
+            <>
+              <NavbarHome />
+              <BlogPage onDelete={handleDelete} blogs={blogs} />
+            </>
+          }
         />
         <Route
           path="/create-post"
           element={<CreateBlog onAddBlog={addBlog} />}
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Navbar />
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <>
+              <Navbar />
+              <Signup />
+            </>
+          }
+        />
         <Route
           path="/edit-post"
           element={<EditBlog onUpdate={handleUpdate} />}
