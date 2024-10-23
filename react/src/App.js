@@ -23,7 +23,7 @@ const App = () => {
   const fetchBlogs = async () => {
     // const response = await fetch("http://localhost:5000/api/blogs");
     const response = await fetch(
-      "//https://blogging-platform-1-rp5u.onrender.com/api/blogs"
+      "https://blogging-platform-1-rp5u.onrender.com/api/blogs"
     );
     const data = await response.json();
     setBlogs(data);
