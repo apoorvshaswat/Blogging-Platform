@@ -22,17 +22,11 @@ app.set("view engine", "ejs");
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: "https://blogging-platform-1-rp5u.onrender.com",
     credentials: true,
   })
 );
-
-// app.use(
-//   cors({
-//     origin: "https://blogging-platform-1-rp5u.onrender.com",
-//     credentials: true,
-//   })
-// );
 
 // Configures session
 app.use(
