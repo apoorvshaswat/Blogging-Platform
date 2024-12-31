@@ -5,17 +5,16 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = async (event) => {
-    event.preventDefault(); // Prevent default anchor behavior
+    event.preventDefault(); 
 
     try {
       const response = await fetch("/logout", {
         method: "GET",
-        credentials: "include", // Include cookies with the request
+        credentials: "include", 
       });
 
       if (response.ok) {
-        // User successfully logged out
-        navigate("/"); // Redirect to the home page
+        navigate("/"); 
       } else {
         console.error("Failed to log out");
       }

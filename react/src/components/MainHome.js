@@ -5,28 +5,28 @@ export default function Main() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkLogin = async () => {
-      const response = await fetch("http://localhost:5000/api/checklogin", {
-        method: "GET",
-        credentials: "include",
-      });
-      if (!response.ok) {
-        navigate("/login");
-      }
-    };
-
     // const checkLogin = async () => {
-    //   const response = await fetch(
-    //     "https://blogging-platform-1-rp5u.onrender.com/api/checklogin",
-    //     {
-    //       method: "GET",
-    //       credentials: "include",
-    //     }
-    //   );
+    //   const response = await fetch("http://localhost:5000/api/checklogin", {
+    //     method: "GET",
+    //     credentials: "include",
+    //   });
     //   if (!response.ok) {
     //     navigate("/login");
     //   }
     // };
+
+    const checkLogin = async () => {
+      const response = await fetch(
+        "https://blogging-platform-1-rp5u.onrender.com/api/checklogin",
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      if (!response.ok) {
+        navigate("/login");
+      }
+    };
     checkLogin();
   }, [navigate]);
 
