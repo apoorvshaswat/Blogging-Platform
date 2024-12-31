@@ -19,7 +19,6 @@ body {
 
 .header {
   background-color: #f8f9fa;
-  padding: 10px;
 }
 
 .nav-links {
@@ -28,14 +27,14 @@ body {
 }
 
 .nav-links li {
-  margin-right: 20px;
+  margin-right: 1vw;
 }
 
 .nav-link {
   color: #007bff;
   text-decoration: none;
-  font-size: 20px;
-  border-bottom: 2px solid #007bff;
+  font-size: 1rem;
+  /* border-bottom: 2px solid #007bff; */
   padding-bottom: 5px;
 }
 
@@ -46,19 +45,19 @@ body {
   justify-content: flex-end;
   background-color: #002a3b;
   height: 10vh;
-  width: 100%;
+  width: 100vw;
   padding: 1.25rem 2.5rem;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
   padding-right: 10%;
-  min-width: 374px;
+  /* min-width: 374px; */
 }
 
 .nav-links {
   display: flex;
   gap: 20%;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   list-style-type: none;
   padding-right: 5%;
   margin: 0;
@@ -75,11 +74,14 @@ body {
   height: auto;
   margin: 0;
   padding: 5%;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .create-blog-bg {
   background-color: #003145;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
@@ -145,11 +147,13 @@ body {
 .main {
   background: #003145;
   width: 100%;
-  height: 80vh;
+  min-height: 80vh;
+  height: auto;
   color: white;
   display: flex;
   flex-direction: row;
-  padding-bottom: 10vh;
+  padding-bottom: 20vh;
+  
 }
 
 .main_home {
@@ -169,7 +173,7 @@ body {
   gap: 50px;
   height: 400px;
   padding-top: 90px;
-  padding-left: 20%;
+  padding-left: 15vw;
 
   padding-bottom: 10vh;
 }
@@ -196,7 +200,7 @@ body {
 
 .achievements {
   width: 100%;
-  height: 35vh;
+  height: 40vh;
   background: #002a3b;
 }
 
@@ -214,7 +218,8 @@ body {
 .achievements1,
 .achievements2 {
   border-right: 2px solid white;
-  padding-right: 100px;
+  padding-right: 5vw;
+  
 }
 
 .achievements1 img,
@@ -255,10 +260,11 @@ body {
   width: 100%;
   height: 593px;
   margin-top: 100px;
-  margin-left: 250px;
+  margin-left: 15%;
   display: flex;
   flex-wrap: wrap;
   gap: 100px;
+  padding-bottom: 10%;
 }
 
 .why_main b {
@@ -313,7 +319,7 @@ body {
 .explore_text {
   color: white;
   font-size: 30px;
-  padding-left: 600px;
+  padding-left: 45%;
 }
 
 .blog_main {
@@ -373,7 +379,7 @@ body {
   height: auto;
   font-size: 30px;
   border-bottom: 1px solid gray;
-  padding-left: 100px;
+  padding-left: 5%;
   display: flex;
   align-items: flex-end;
 }
@@ -387,9 +393,9 @@ body {
 
 .blog1_main_overview {
   height: auto;
-  width: 1419px;
+  width: 100vw;
   font-size: 20px;
-  padding-left: 100px;
+  padding-left: 5%;
   padding-top: 20px;
 }
 
